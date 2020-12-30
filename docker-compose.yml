@@ -1,0 +1,44 @@
+version: "3.3"
+
+services:
+  # nginx:
+  #   image: nginx:1.19.0-alpine-perl
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8000:80
+  #   volumes:
+  #     - ./php:/app
+  #     - ./docker/nginx-site.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - php
+  #   networks:
+  #     - frontend
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php.Dockerfile
+      args:
+        - DB_HOST=${DB_HOST}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - DB_USER=${DB_USER}
+        - DB_NAME=${DB_NAME}
+    working_dir: /app
+    restart: unless-stopped
+    volumes:
+      - ./php:/app
+    env_file:
+      - ./.env
+    # networks:
+    #   - frontend
+    # extra_hosts:
+    #   - db_max:192.168.1.11
+    # links: 
+    #   - mysql:db
+    # depends_on:
+    #   - mysql
+
+# networks:
+#   backend:
+#     internal: true
+#   frontend:
