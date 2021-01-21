@@ -2,8 +2,21 @@
 
 try { 
   echo "Trying connection...";
-  $bd = new PDO('odbc:smart_maxdb');
+  // $bd = new PDO('odbc:smart_maxdb');
+  $db = new PDO('odbc:Driver=maxdb;ServerDB=smart;ServerNode=192.168.3.1:7210', 'DBA', 'EDMARDBA');
+  // $c = odbc_connect('Driver=maxdb;ServerDB=smart;ServerNode=192.168.3.1:7210', 'DBA', 'EDMARDBA');
   echo "Succesful connected!";
+
+  $res = $db->query('SELECT * FROM cnv LIMIT 10');
+
+  print_r($res->fetch(PDO::FETCH_ASSOC));
+
+/* $sql = 'SELECT * FROM cnv LIMIT 10';
+$e = odbc_exec($c, $sql);
+$row = odbc_fetch_array($e); */
+
+// print_r($row);
+
 } catch(PDOException $e) {
-  echo $e->getMessage();
+  print_r($e->getMessage());
 }
