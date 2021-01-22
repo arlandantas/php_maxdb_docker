@@ -65,4 +65,4 @@ COPY docker/init_php.sh /home/root/
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 # CMD ["php-fpm"]
-CMD ["sh /home/root/init_php.sh"]
+ENTRYPOINT ["/bin/sh", "/home/root/init_php.sh"]
