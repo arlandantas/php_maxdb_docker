@@ -28,6 +28,7 @@ services:
     volumes:
       - ./php:/app
     env_file:
+      - ./.env.example
       - ./.env
     # networks:
     #   - frontend

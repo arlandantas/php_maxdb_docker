@@ -54,6 +54,9 @@ RUN apt-get update && apt-get install unixodbc unixodbc-dev -y \
  && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
  && docker-php-ext-install pdo_odbc
 
+COPY docker/maxdb/update_odbc /home/root/
+RUN /home/root/update_odbc.sh
+
 # COPY docker/maxdb /installation
 # RUN /installation/init.sh
 # RUN rm -rf /installation
