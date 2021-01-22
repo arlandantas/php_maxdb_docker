@@ -54,8 +54,8 @@ RUN apt-get update && apt-get install unixodbc unixodbc-dev -y \
  && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
  && docker-php-ext-install pdo_odbc
 
-COPY docker/update_odbc.sh /home/root/
-RUN /home/root/update_odbc.sh
+COPY docker/init_php.sh /home/root/
+RUN /home/root/init_php.sh
 
 # COPY docker/maxdb /installation
 # RUN /installation/init.sh
@@ -63,4 +63,5 @@ RUN /home/root/update_odbc.sh
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]
+# CMD ["php-fpm"]
+CMD ["sh /home/root/init_php.sh"]

@@ -3,7 +3,8 @@
 try { 
   echo "Trying connection...";
   // $bd = new PDO('odbc:smart_maxdb');
-  $db = new PDO('odbc:Driver=maxdb;ServerDB=smart;ServerNode=192.168.3.1:7210', 'DBA', 'EDMARDBA');
+  // $db = new PDO('odbc:Driver=/app/lib/libsdbodbc.so;ServerDB=smart;ServerNode=192.168.3.1:7210', 'DBA', 'EDMARDBA');
+  $db = new PDO('odbc:maxdb');
   // $c = odbc_connect('Driver=maxdb;ServerDB=smart;ServerNode=192.168.3.1:7210', 'DBA', 'EDMARDBA');
   echo "Succesful connected!";
 
